@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello Worldss</title>
+    <title>Weather App</title>
 </head>
 <body>
     <h1>Hello Worldss</h1>
-    <h2>Look man im just trying this out</h2>
+    
+    <form method="POST">
+        <input type="text" name="city" placeholder="Enter a city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if weather %}
+        <h2>Weather in {{ weather.location.name }}, {{ weather.location.country }}</h2>
+        <p><strong>Temperature:</strong> {{ weather.current.temperature }}°C</p>
+        <p><strong>Weather:</strong> {{ weather.current.weather_descriptions[0] }}</p>
+        <p><strong>Humidity:</strong> {{ weather.current.humidity }}%</p>
+        <p><strong>Wind Speed:</strong> {{ weather.current.wind_speed }} km/h</p>
+    {% else %}
+        <p>Failed to fetch weather data.</p>
+    {% endif %}
 </body>
 </html>
